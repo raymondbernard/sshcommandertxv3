@@ -1,0 +1,12 @@
+venv/
+__pycache__/
+.DS_Store
+config/preferences.json
+.vscode/
+.dataset-*/
+.dataset_/
+.model/
+.kaizen_theme
+.config/
+test*
+git 
