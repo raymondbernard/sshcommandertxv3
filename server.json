@@ -1,0 +1,222 @@
+[
+    {
+        "address": "oob-mgmt-server",
+        "commands": "cd Test-Drive-Automation; git checkout main; git pull; ansible-playbook start-lab.yml",
+        "config_description": "Connect to the oob-mgmt-server and run the setup playbook to pull the latest changes and configure lab settings.",
+        "id": 1,
+        "password": "nvidia",
+        "query": "Run the setup playbook",
+        "session_id": "1bd56bc3-c8ee-446c-b2b9-fdbd46cf7737",
+        "timestamp": 1709497491.1477044,
+        "username": "ubuntu"
+    },
+    {
+        "address": "leaf01",
+        "commands": "nv set interface lo ip address 10.255.255.1/32; nv config apply",
+        "config_description": "Assign loopback address 10.255.255.1/32 to leaf01.",
+        "id": 2,
+        "password": "cumulus",
+        "query": "Configure loopback address on leaf01",
+        "session_id": "1bd56bc3-c8ee-446c-b2b9-fdbd46cf7737",
+        "timestamp": 1709497517.5059614,
+        "username": "cumulus"
+    },
+    {
+        "address": "leaf02",
+        "commands": "nv set interface lo ip address 10.255.255.2/32; nv config apply",
+        "config_description": "Assign loopback address 10.255.255.2/32 to leaf02.",
+        "id": 3,
+        "password": "cumulus",
+        "query": "Configure loopback address on leaf02",
+        "session_id": "1bd56bc3-c8ee-446c-b2b9-fdbd46cf7737",
+        "timestamp": 1709497528.0382123,
+        "username": "cumulus"
+    },
+    {
+        "address": "leaf01",
+        "commands": "nv set bridge domain br_default vlan 10,20; nv set interface swp1,bond0 bridge domain br_default; nv set interface swp1 bridge domain br_default access 10; nv config apply",
+        "config_description": "Configure bridge domain br_default with VLANs 10 and 20 on leaf01, setting swp1 as an access port for VLAN 10.",
+        "id": 4,
+        "password": "cumulus",
+        "query": "Configure bridge and access ports on leaf01",
+        "session_id": "1bd56bc3-c8ee-446c-b2b9-fdbd46cf7737",
+        "timestamp": 1709497559.4118292,
+        "username": "cumulus"
+    },
+    {
+        "address": "leaf02",
+        "commands": "nv set bridge domain br_default vlan 10,20; nv set interface swp2,bond0 bridge domain br_default; nv set interface swp2 bridge domain br_default access 20; nv config apply",
+        "config_description": "Configure bridge domain br_default with VLANs 10 and 20 on leaf02, setting swp2 as an access port for VLAN 20.",
+        "id": 5,
+        "password": "cumulus",
+        "query": "Configure bridge and access ports on leaf02",
+        "session_id": "1bd56bc3-c8ee-446c-b2b9-fdbd46cf7737",
+        "timestamp": 1709497576.1424038,
+        "username": "cumulus"
+    },
+    {
+        "address": "spine01",
+        "commands": "nv set interface lo ip address 10.255.255.101/32; nv set system hostname spine01; nv config apply",
+        "config_description": "Configure the loopback interface with IP 10.255.255.101/32 on spine01.",
+        "id": 6,
+        "password": "cumulus",
+        "query": "Configure loopback interface on spine01",
+        "session_id": "1bd56bc3-c8ee-446c-b2b9-fdbd46cf7737",
+        "timestamp": 1709497600.0000000,
+        "username": "cumulus"
+    },
+    {
+        "address": "spine01",
+        "commands": "nv set vrf default router bgp autonomous-system 65201; nv set vrf default router bgp path-selection multipath aspath-ignore on; nv set router bgp router-id 10.255.255.101; nv set vrf default router bgp neighbor swp1 remote-as external; nv set vrf default router bgp neighbor swp2 remote-as external; nv config apply",
+        "config_description": "Configure BGP AS 65201 on spine01 with neighbors on swp1 and swp2 for external peering.",
+        "id": 7,
+        "password": "cumulus",
+        "query": "Configure BGP AS on spine01",
+        "session_id": "1bd56bc3-c8ee-446c-b2b9-fdbd46cf7737",
+        "timestamp": 1709497625.0000000,
+        "username": "cumulus"
+    },
+    {
+        "address": "leaf01",
+        "commands": "nv show interface bond0",
+        "config_description": "Verify trunk configuration on leaf01, ensuring bond0 includes VLANs 10 and 20.",
+        "id": 17,
+        "password": "cumulus",
+        "query": "Check trunk configuration on leaf01",
+        "session_id": "1bd56bc3-c8ee-446c-b2b9-fdbd46cf7737",
+        "timestamp": 1709497740.4118292,
+        "username": "cumulus"
+    },
+    {
+        "address": "leaf02",
+        "commands": "nv show interface bond0",
+        "config_description": "Verify trunk configuration on leaf02, ensuring bond0 includes VLANs 10 and 20.",
+        "id": 18,
+        "password": "cumulus",
+        "query": "Check trunk configuration on leaf02",
+        "session_id": "1bd56bc3-c8ee-446c-b2b9-fdbd46cf7737",
+        "timestamp": 1709497750.1424038,
+        "username": "cumulus"
+    },
+    {
+        "address": "leaf01",
+        "commands": "nv show bridge domain br_default mac-table",
+        "config_description": "Verify MAC addresses on bridge domain br_default for leaf01, ensuring MAC addresses from VLANs 10 and 20 are correctly learned on bond0 and swp1 interfaces.",
+        "id": 19,
+        "password": "cumulus",
+        "query": "Verify bridge MAC address table on leaf01",
+        "session_id": "1bd56bc3-c8ee-446c-b2b9-fdbd46cf7737",
+        "timestamp": 1709497760.4118292,
+        "username": "cumulus"
+    },
+    {
+        "address": "leaf02",
+        "commands": "nv show bridge domain br_default mac-table",
+        "config_description": "Verify MAC addresses on bridge domain br_default for leaf02, ensuring MAC addresses from VLANs 10 and 20 are correctly learned on bond0 and swp2 interfaces.",
+        "id": 20,
+        "password": "cumulus",
+        "query": "Verify bridge MAC address table on leaf02",
+        "session_id": "1bd56bc3-c8ee-446c-b2b9-fdbd46cf7737",
+        "timestamp": 1709497770.1424038,
+        "username": "cumulus"
+    },
+    {
+        "address": "oob-mgmt-server",
+        "commands": "ping -c 3 10.0.0.1",
+        "config_description": "Verify connectivity to oob-mgmt-server.",
+        "id": 8,
+        "password": "nvidia",
+        "query": "Test connectivity to oob-mgmt-server",
+        "session_id": "1bd56bc3-c8ee-446c-b2b9-fdbd46cf7737",
+        "timestamp": 1709497650.1477044,
+        "username": "ubuntu"
+    },
+    {
+        "address": "leaf01",
+        "commands": "nv show interface lo",
+        "config_description": "Verify loopback address 10.255.255.1/32 on leaf01.",
+        "id": 9,
+        "password": "cumulus",
+        "query": "Test loopback address on leaf01",
+        "session_id": "1bd56bc3-c8ee-446c-b2b9-fdbd46cf7737",
+        "timestamp": 1709497660.5059614,
+        "username": "cumulus"
+    },
+    {
+        "address": "leaf02",
+        "commands": "nv show interface lo",
+        "config_description": "Verify loopback address 10.255.255.2/32 on leaf02.",
+        "id": 10,
+        "password": "cumulus",
+        "query": "Test loopback address on leaf02",
+        "session_id": "1bd56bc3-c8ee-446c-b2b9-fdbd46cf7737",
+        "timestamp": 1709497670.0382123,
+        "username": "cumulus"
+    },
+    {
+        "address": "leaf01",
+        "commands": "nv show bridge domain br_default",
+        "config_description": "Verify bridge domain br_default contains VLANs 10 and 20 on leaf01 with swp1 as access port for VLAN 10.",
+        "id": 11,
+        "password": "cumulus",
+        "query": "Test bridge domain configuration on leaf01",
+        "session_id": "1bd56bc3-c8ee-446c-b2b9-fdbd46cf7737",
+        "timestamp": 1709497680.4118292,
+        "username": "cumulus"
+    },
+    {
+        "address": "leaf02",
+        "commands": "nv show bridge domain br_default",
+        "config_description": "Verify bridge domain br_default contains VLANs 10 and 20 on leaf02 with swp2 as access port for VLAN 20.",
+        "id": 12,
+        "password": "cumulus",
+        "query": "Test bridge domain configuration on leaf02",
+        "session_id": "1bd56bc3-c8ee-446c-b2b9-fdbd46cf7737",
+        "timestamp": 1709497690.1424038,
+        "username": "cumulus"
+    },
+    {
+        "address": "spine01",
+        "commands": "sudo vtysh -c 'show ip bgp summary'",
+        "config_description": "Verify BGP peer status on spine01 with established peers leaf01 and leaf02.",
+        "id": 13,
+        "password": "cumulus",
+        "query": "Test BGP peer status on spine01",
+        "session_id": "1bd56bc3-c8ee-446c-b2b9-fdbd46cf7737",
+        "timestamp": 1709497700.0000000,
+        "username": "cumulus"
+    },
+    {
+        "address": "server01",
+        "commands": "ping -c 3 10.0.10.1",
+        "config_description": "Test connectivity from server01 to VRR IP 10.0.10.1 on VLAN 10.",
+        "id": 14,
+        "password": "nvidia",
+        "query": "Verify VRR IP connectivity on VLAN 10",
+        "session_id": "1bd56bc3-c8ee-446c-b2b9-fdbd46cf7737",
+        "timestamp": 1709497710.1477044,
+        "username": "ubuntu"
+    },
+    {
+        "address": "server02",
+        "commands": "ping -c 3 10.0.20.1",
+        "config_description": "Test connectivity from server02 to VRR IP 10.0.20.1 on VLAN 20.",
+        "id": 15,
+        "password": "nvidia",
+        "query": "Verify VRR IP connectivity on VLAN 20",
+        "session_id": "1bd56bc3-c8ee-446c-b2b9-fdbd46cf7737",
+        "timestamp": 1709497720.5059614,
+        "username": "ubuntu"
+    },
+    {
+        "address": "server01",
+        "commands": "ping -c 3 10.0.20.102",
+        "config_description": "Test connectivity between server01 and server02.",
+        "id": 16,
+        "password": "nvidia",
+        "query": "Test connectivity between server01 and server02",
+        "session_id": "1bd56bc3-c8ee-446c-b2b9-fdbd46cf7737",
+        "timestamp": 1709497730.0382123,
+        "username": "ubuntu"
+    }
+]
