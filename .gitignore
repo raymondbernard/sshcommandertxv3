@@ -10,3 +10,5 @@ config/preferences.json
 .config/
 test*
 git 
+.venv
+*.pem
